@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CollisionObserver : MonoBehaviour
 {
@@ -11,9 +12,20 @@ public class CollisionObserver : MonoBehaviour
         var tag = other.gameObject.tag;
 
         if (tag == "Player")
+        {
             winText.text = "Победа";
+            Invoke(nameof(ExitMenu), 1f);
+        }
 
         else if (tag == "Enemy")
+        {
             winText.text = "Поражение";
+            Invoke(nameof(ExitMenu), 1f);
+        }
+    }
+
+    private void ExitMenu()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
